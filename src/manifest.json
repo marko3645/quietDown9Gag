@@ -3,6 +3,19 @@
     "description": "Automatically adds the 'controls' attribute to all videos on 9gag.",
     "version": "1.0.0",
     "manifest_version": 3,
+"icons": {
+        "16": "icons/icon-128.png",
+        "32": "icons/icon-128.png",
+        "48": "icons/icon-128.png",
+        "128": "icons/icon-128.png"
+    },
+    "action": {
+        "default_icon": {
+            "16": "icons/icon-128.png",
+            "32": "icons/icon-128.png"
+        },
+        "default_title": "9GAG — Video Controls"
+    },
     "content_scripts": [
         {
             "matches": [
