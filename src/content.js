@@ -18,13 +18,28 @@
     const observer = new MutationObserver((mutations) => {
         for (const mutation of mutations) {
             for (const node of mutation.addedNodes) {
-                if(!(node instanceof Element)){
+                if (!(node instanceof Element)) {
                     continue;
                 }
 
-                if(node.tagName.toLowerCase() === "video"){
+                if (node.tagName.toLowerCase() === "video") {
                     addControls(node);
+                } else {
+                    // If a subtree was added, scan it for videos.
+                    const vids = node.querySelectorAll?.('video');
+                    if (vids && vids.length){
+                        vids.forEach(addControls);
+                    } 
                 }
+            }
+            // If the site (or player script) removes the controls attribute, put it back.
+            if (
+                mutation.type === 'attributes' &&
+                mutation.attributeName === 'controls' &&
+                mutation.target instanceof HTMLVideoElement
+            ) {
+                const v = mutation.target;
+                if (!v.hasAttribute('controls') || !v.controls) addControls(v);
             }
         }
     });
@@ -33,6 +48,8 @@
         childList: true,
         subtree: true,
         attributes: true,
+        attributeFilter: ['controls'] // also watch if something strips controls
+
     });
 
     // Some players hydrate late, so re-apply on load
