@@ -3,7 +3,7 @@
 A tiny WebExtension that watches 9GAG for newly added `<video>` elements and forces native controls on them. Works on Chrome/Edge/Brave/Opera/Firefox.
 
 ## Why?
-Some feeds hide native controls or swap players dynamically. This content script ensures you always get play/pause, scrub, volume, etc.
+9GAG doesn't allow you to pause or seek in GIFS or Videos, nevermind changing the volume; This aims to fix that.
 
 ## What it does
 - Adds the `controls` attribute to every `<video>` (existing and newly added)
