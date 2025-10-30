@@ -1,0 +1,7 @@
+video + .sound-toggle{
+  display: none;
+}
+
+video + .length{
+    display: none;
+}
